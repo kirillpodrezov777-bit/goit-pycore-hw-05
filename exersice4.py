@@ -40,10 +40,10 @@ def add_contact(args, contacts):
 @input_error
 def change_contact(args, contacts):
     name, phone = args[0], args[1]
+    if name not in contacts:
+            raise KeyError
     if not phone.isdigit():
         return "Phone number must contain only integers."
-    if name not in contacts:
-        raise KeyError
     contacts[name] = phone
     return "Contact updated."
 

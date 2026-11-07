@@ -42,15 +42,15 @@ def change_contact(args, contacts):
     name, phone = args[0], args[1]
     if not phone.isdigit():
         return "Phone number must contain only integers."
-    if name in contacts:
-        contacts[name] = phone
-        return "Contact updated."
+    if name not in contacts:
+        raise KeyError
+    contacts[name] = phone
+    return "Contact updated."
 
 @input_error
 def show_phone(args, contacts):
     name = args[0]
-    if name in contacts:
-        return contacts[name]
+    return contacts[name]
 
 @input_error
 def show_all(contacts):
